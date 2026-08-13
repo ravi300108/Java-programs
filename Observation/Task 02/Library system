@@ -1,115 +1,74 @@
-package librarysystem;
 class Book {
-    private int bookId;
-    private String bookName;
-    private String author;
+    private int id;
+    private String name, author;
     private double price;
 
-    // const
-    Book() {
-        bookId = 0;
-        bookName = "Unknown";
-        author = "Unknown";
-        price = 0.0;
+    Book(int id, String name, String author, double price) {
+        this.id=id; this.name=name; this.author=author; this.price=price;
     }
-   //const with param
-    Book(int id, String name, String auth, double pr) {
-        bookId = id;
-        bookName = name;
-        author = auth;
-        price = pr;
-    }
-    
-    // getters & setters for Encapsulation
-    public int getBookId() { return bookId; }
-    public void setBookId(int id) { bookId = id; }
 
-    public String getBookName() { return bookName; }
-    public void setBookName(String name) { bookName = name; }
-
+    public int getId() { return id; }
+    public void setId(int id) { this.id=id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name=name; }
     public String getAuthor() { return author; }
-    public void setAuthor(String auth) { author = auth; }
-
+    public void setAuthor(String author) { this.author=author; }
     public double getPrice() { return price; }
-    public void setPrice(double pr) { price = pr; }
+    public void setPrice(double price) { this.price=price; }
 
-    public void displayDetails() {
-        System.out.println(bookId + " | " + bookName + " | " + author + " | " + price);
+    void display() {
+        System.out.println(id+" "+name+" "+author+" "+price);
     }
 }
- // inheritance super:person sub:student and faculty
+
 class Person {
-    String name;
-    int age;
-    void display() {
-        System.out.println("Name: " + name + ", Age: " + age);
-    }
+    String name; int age;
+    void display() { System.out.println(name+" "+age); }
 }
 
 class Student extends Person {
     String course;
     void display() {
         super.display();
-        System.out.println("Course: " + course);
+        System.out.println(course);
     }
 }
 
 class Faculty extends Person {
-    String department;
+    String dept;
     void display() {
         super.display();
-        System.out.println("Department: " + department);
+        System.out.println(dept);
     }
 }
 
-//polymorph
-class AreaCalculator {
-    double area(double radius) { 
-        return Math.PI * radius * radius;
-    }
-  double area(double length, double breadth) { 
-        return length * breadth;
-    }
-    double area(double base, double height, boolean triangle) { 
-    	return 0.5 * base * height;
-    }
+class Area {
+    void area(double r) { System.out.println(3.14*r*r); }
+    void area(int l,int b) { System.out.println(l*b); }
 }
- 
+
 class Vehicle {
-    void display() {
-        System.out.println("This is a vehicle.");
-    }
+    void display() { System.out.println("Vehicle"); }
 }
 
 class Car extends Vehicle {
-    @Override
-    void display() {
-        System.out.println("This is a Car.");
-    }
+    void display() { System.out.println("Car"); }
 }
 
 class Bike extends Vehicle {
-    @Override
-    void display() {
-        System.out.println("This is a Bike.");
-    }
+    void display() { System.out.println("Bike"); }
 }
 
-// abstraction
 abstract class Shape {
     abstract void draw();
 }
 
 class Circle extends Shape {
-    void draw() {
-        System.out.println("Drawing a Circle");
-    }
+    void draw() { System.out.println("Circle"); }
 }
 
 class Rectangle extends Shape {
-    void draw() {
-        System.out.println("Drawing a Rectangle");
-    }
+    void draw() { System.out.println("Rectangle"); }
 }
 
 interface Printable {
@@ -117,53 +76,34 @@ interface Printable {
 }
 
 class Report implements Printable {
-    public void print() {
-        System.out.println("Printing Report...");
-    }
+    public void print() { System.out.println("Report"); }
 }
 
+public class Library {
+    public static void main(String[] args) {
 
+        Book b=new Book(101,"Java","Gosling",500);
+        b.display();
 
-public class LibrarySystem {
-	public static void main(String[] args) {
-        System.out.println(" Book Details :");
-        Book b1 = new Book();
-        Book b2 = new Book(235, "Java programming practices", "Santosh Kumar P", 499.99);
-        b1.displayDetails();
-        b2.displayDetails();
-
-        System.out.println("\n Inheritance:");
-        Student s = new Student();
-        s.name = "Haarika";
-        s.age = 20;
-        s.course = "Computer Science";
+        Student s=new Student();
+        s.name="Bob"; s.age=20; s.course="Engineering";
         s.display();
-        
-        Faculty f = new Faculty();
-        f.name = "Dr. Rao";
-        f.age = 45;
-        f.department = "Engineering";
+
+        Faculty f=new Faculty();
+        f.name="Dr.Bob"; f.age=45; f.dept="CSE";
         f.display();
 
-        System.out.println("\nPolymorphism:");
-        AreaCalculator ac = new AreaCalculator();
-        System.out.println("Circle Area: " + ac.area(5));
-        System.out.println("Rectangle Area: " + ac.area(4, 6));
-        System.out.println("Triangle Area: " + ac.area(3, 7, true));
+        Area a=new Area();
+        a.area(5.0);
+        a.area(10,20);
 
-        Vehicle v = new Vehicle();
-        Vehicle car = new Car();
-        Vehicle bike = new Bike();
-        v.display();
-        car.display();
-        bike.display();
+        Vehicle v1=new Car(), v2=new Bike();
+        v1.display(); v2.display();
 
-        System.out.println("\n Abstraction & Interfaces");
-        Shape circle = new Circle();
-        Shape rectangle = new Rectangle();
-        circle.draw();
-        rectangle.draw();
-        Report report = new Report();
-        report.print();
+        Shape sh1=new Circle(), sh2=new Rectangle();
+        sh1.draw(); sh2.draw();
+
+        Printable p=new Report();
+        p.print();
     }
 }
