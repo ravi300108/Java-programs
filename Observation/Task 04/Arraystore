@@ -5,10 +5,10 @@ public static void main(String[] args) {
     try {
         arr[0] = "Java";
         arr[1] = "Python";
-        arr[2] = 10;//it is an integer
+        arr[2] = 10;
     }
     catch (ArrayStoreException as) {
-        System.out.println(as.getMessage());
+        System.out.println("Enter same type of data type");
     }
 }
 }
