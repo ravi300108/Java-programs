@@ -1,0 +1,16 @@
+package observation;
+import java.util.Scanner;
+import java.util.InputMismatchException;
+public class Eh7 {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            try {
+                System.out.print("Enter a number: ");
+                int number = scanner.nextInt(); // Expects a number
+                System.out.println("You entered: " + number);
+            } catch (InputMismatchException e) {
+                System.out.println("That was not a number!");
+            }
+            scanner.close();
+        }
+    }
