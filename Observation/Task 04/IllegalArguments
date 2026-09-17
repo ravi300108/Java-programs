@@ -1,6 +1,6 @@
 package observation;
 
-public class Eh8 {
+public class smtg {
     public static void main(String[] args) {
         int volume = -10;
         try {
