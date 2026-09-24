@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bank Interest Demonstration</title>
+<style>
+  @page { size: A4 portrait; margin: 18mm; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-size: 13.5px; line-height: 1.5; color: #111; background:#fff; margin:0; }
+  h1.main-title { font-size:22px; font-weight:700; margin:0 0 16px; color:#000; }
+  h2.section-header { font-size:14.5px; font-weight:700; margin:18px 0 6px; color:#000; }
+  .meta-field { margin-bottom:8px; } .meta-label { font-weight:700; color:#000; }
+  .sub-heading { font-weight:700; margin:8px 0 4px; }
+  ul { list-style-type:disc; margin:4px 0 10px 22px; padding:0; }
+  ol { margin:4px 0 10px 22px; padding:0; } li { margin-bottom:3px; }
+  .uml-container { width:100%; margin:14px auto; font-family:"Courier New",Courier,monospace; font-size:12.5px; }
+  .uml-box { border:1.5px solid #222; background:#fff; box-sizing:border-box; }
+  .uml-class-header { font-weight:700; text-align:center; padding:5px; font-size:13px; border-bottom:1.5px solid #222; }
+  .uml-methods { padding:6px 10px; line-height:1.35; }
+  .connector-area { text-align:center; line-height:1.2; margin:4px 0; }
+  .flex-row { display:flex; justify-content:space-between; gap:12px; }
+  .code-block { background:#fafafa; border:1px solid #e0e0e0; border-radius:4px; padding:12px 14px; font-family:Consolas,"Courier New",monospace; font-size:11.5px; line-height:1.4; color:#000; white-space:pre; overflow-x:auto; margin:8px 0 14px; }
+  .terminal-box { background:#1e1e1e; color:#ccc; border-radius:5px; padding:12px 16px; font-family:Consolas,"Courier New",monospace; font-size:12px; line-height:1.45; white-space:pre; margin:8px 0 16px; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+  .terminal-box .ps-prompt { color:#e5e5e5; } .terminal-box .cmd-call { color:#4ec9b0; }
+  .page-break { page-break-before:always; }
+</style>
+</head>
+<body>
+
+<h1 class="main-title">Bank Interest Demonstration</h1>
+
+<div class="meta-field"><span class="meta-label">Title:</span> Bank Interest Rate Demonstration using Dynamic Method Dispatch</div>
+
+<div class="meta-field"><span class="meta-label">Objective/Aim:</span><br>
+To demonstrate method overriding and runtime polymorphism in Java by calculating different rates of interest for different banks.</div>
+
+<h2 class="section-header">System Requirements :</h2>
+<div class="sub-heading">Hardware</div>
+<ul>
+<li>Standard PC/Laptop</li><li>Intel Core i3/i5 processor or equivalent</li><li>Minimum 4 GB RAM</li><li>Minimum 500 MB free storage</li><li>Keyboard and Monitor</li>
+</ul>
+<div class="sub-heading">Software</div>
+<ul>
+<li>Operating System: Windows/Linux/macOS</li><li>Java Development Kit (JDK 17 or JDK 21)</li>
+<li>Text Editor or IDE such as Eclipse, IntelliJ IDEA, NetBeans, or VS Code</li><li>Command Prompt/Terminal</li>
+</ul>
+
+<h2 class="section-header">Algorithm / Logic Description:</h2>
+<ol>
+<li>Create a base class named <code>Bank</code> with a method <code>interestRate()</code> returning the default interest rate (4.0).</li>
+<li>Create subclasses <code>StateBank</code>, <code>ICICIBank</code>, and <code>PunjabBank</code> that extend <code>Bank</code>.</li>
+<li>Override the <code>interestRate()</code> method in each derived class to return their respective rates: 7.0%, 6.5%, and 6.0%.</li>
+<li>Create the <code>InterestDemo</code> class containing the <code>main()</code> method.</li>
+<li>Prompt the user to enter the bank name using the <code>Scanner</code> class.</li>
+<li>Declare a <code>Bank</code> reference variable and dynamically assign the corresponding subclass instance based on user input.</li>
+<li>Call <code>interestRate()</code> through the superclass reference to demonstrate runtime polymorphism (Dynamic Method Dispatch).</li>
+<li>Display the retrieved rate of interest and close the scanner.</li>
+<li>Stop the program.</li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2 class="section-header">UML class Diagram</h2>
+<div class="uml-container">
+<div class="uml-box" style="width:50%;margin:0 auto;"><div class="uml-class-header">Bank</div><div class="uml-methods">~ interestRate() : double</div></div>
+
+<div class="connector-area">
+▲　　　　　　　　　　　　　　　　▲　　　　　　　　　　　　　　　　▲<br>
+/　　　　　　　　　　　　　　　　 |　　　　　　　　　　　　　　　　 \<br>
+/ (Inheritance)　　　　　　　　　 | (Inheritance)　　　　　　　　　 \ (Inheritance)<br>
+/　　　　　　　　　　　　　　　　 |　　　　　　　　　　　　　　　　 \
+</div>
+
+<div class="flex-row">
+<div class="uml-box" style="flex:1;"><div class="uml-class-header">StateBank</div><div class="uml-methods">~ interestRate() : double</div></div>
+<div class="uml-box" style="flex:1;"><div class="uml-class-header">ICICIBank</div><div class="uml-methods">~ interestRate() : double</div></div>
+<div class="uml-box" style="flex:1;"><div class="uml-class-header">PunjabBank</div><div class="uml-methods">~ interestRate() : double</div></div>
+</div>
+
+<div class="connector-area">
+▲　　　　　　　　　　　　　　　　▲　　　　　　　　　　　　　　　　▲<br>
+:　　　　　　　　　　　　　　　　:　　　　　　　　　　　　　　　　:<br>
+:............　　　　　　　　　　 :　　　　　　　　　　 ............:<br>
+:　　　　　　　　　　　:　　　　　　　:<br>
+: (creates &amp; uses) :<br>
+:
+</div>
+
+<div class="uml-box" style="width:75%;margin:0 auto;"><div class="uml-class-header">InterestDemo</div><div class="uml-methods">+ main(args : String[]) : void {static}</div></div>
+
+<div class="connector-area">:<br>: (uses)<br>▼</div>
+
+<div class="uml-box" style="width:75%;margin:0 auto;"><div class="uml-class-header">java.util.Scanner</div><div class="uml-methods">+ nextLine() : String<br>+ close() : void</div></div>
+</div>
+
+<p style="margin-top:14px;"><strong>Relationship:</strong> <code>StateBank</code>, <code>ICICIBank</code>, and <code>PunjabBank</code> inherit from <code>Bank</code> and override <code>interestRate()</code>. <code>InterestDemo</code> instantiates them dynamically and uses <code>Scanner</code> for user input.</p>
+
+<h2 class="section-header">Source Code:</h2>
+<div class="code-block">import java.util.Scanner;
+
+class Bank {
+    double interestRate() {
+        return 4.0;
+    }
+}
+
+class StateBank extends Bank {
+    @Override
+    double interestRate() {
+        return 7.0;
+    }
+}
+
+class ICICIBank extends Bank {
+    @Override
+    double interestRate() {
+        return 6.5;
+    }
+}
+
+class PunjabBank extends Bank {
+    @Override
+    double interestRate() {
+        return 6.0;
+    }
+}
+
+public class InterestDemo {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter bank name: ");
+        String name = input.nextLine();
+
+        Bank bankObj;
+
+        if (name.equalsIgnoreCase("RBI")) {
+            bankObj = new Bank();
+        } else if (name.equalsIgnoreCase("SBI")) {
+            bankObj = new StateBank();
+        } else if (name.equalsIgnoreCase("ICICI")) {
+            bankObj = new ICICIBank();
+        } else if (name.equalsIgnoreCase("PNB")) {
+            bankObj = new PunjabBank();
+        } else {
+            System.out.println("Bank name is not available.");
+            input.close();
+            return;
+        }
+
+        double rate = bankObj.interestRate();
+        System.out.println("Rate of Interest: " + rate + "%");
+
+        input.close();
+    }
+}</div>
+
+<h2 class="section-header">Compilation &amp; Execution Commands:</h2>
+<div class="meta-field"><span class="meta-label">Save file as:</span> InterestDemo.java</div>
+<div class="meta-field"><span class="meta-label">Compilation:</span> javac InterestDemo.java</div>
+<div class="meta-field"><span class="meta-label">Execution:</span> java InterestDemo</div>
+
+<h2 class="section-header">Output Screenshot:</h2>
+<div class="terminal-box"><span class="ps-prompt">PS C:\Users\mmeen\RAVI&gt;</span> <span class="cmd-call">&amp; 'C:\Program Files\Java\jdk-26.0.1\bin\java.exe' ... 'InterestDemo'</span>
+Enter bank name: SBI
+Rate of Interest: 7.0%
+<span class="ps-prompt">PS C:\Users\mmeen\RAVI&gt;</span></div>
+
+<h2 class="section-header">Result:</h2>
+<p>The program was implemented successfully to demonstrate method overriding and runtime polymorphism for different banks. The execution confirms dynamic method dispatch where the appropriate <code>interestRate()</code> method is selected and invoked at runtime based on user selection.</p>
+
+</body>
+</html>
