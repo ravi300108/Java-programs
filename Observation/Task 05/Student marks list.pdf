@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Performance Analysis Demonstration</title>
+<style>
+@page{size:A4 portrait;margin:18mm}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:13.5px;line-height:1.5;color:#111;background:#fff;margin:0}
+h1.main-title{font-size:22px;font-weight:700;margin:0 0 16px;color:#000}
+h2.section-header{font-size:14.5px;font-weight:700;margin:18px 0 6px;color:#000}
+.meta-field{margin-bottom:8px}.meta-label{font-weight:700}.sub-heading{font-weight:700;margin:8px 0 4px}
+ul{list-style-type:disc;margin:4px 0 10px 22px;padding:0}ol{margin:4px 0 10px 22px;padding:0}li{margin-bottom:3px}
+.uml-container{width:100%;margin:14px auto;font-family:"Courier New",monospace;font-size:12.5px}
+.uml-box{border:1.5px solid #222;background:#fff;box-sizing:border-box}
+.uml-class-header{font-weight:700;text-align:center;padding:5px;font-size:13px;border-bottom:1.5px solid #222}
+.uml-attributes,.uml-methods{padding:5px 12px;line-height:1.35}.uml-attributes{border-bottom:1.5px solid #222}
+.connector-area{text-align:center;line-height:1.2;margin:4px 0}
+.code-block{background:#fafafa;border:1px solid #e0e0e0;border-radius:4px;padding:12px 14px;font-family:Consolas,"Courier New",monospace;font-size:11.5px;line-height:1.4;color:#000;white-space:pre;overflow-x:auto;margin:8px 0 14px}
+.terminal-box{background:#1e1e1e;color:#ccc;border-radius:5px;padding:12px 16px;font-family:Consolas,"Courier New",monospace;font-size:12px;line-height:1.45;white-space:pre;margin:8px 0 16px;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.terminal-box .ps-prompt{color:#e5e5e5}.terminal-box .cmd-call{color:#4ec9b0}.page-break{page-break-before:always}
+</style>
+</head>
+<body>
+<h1 class="main-title">Student Performance Analysis Demonstration</h1>
+<div class="meta-field"><span class="meta-label">Title:</span> Student Performance Report using Classes, Objects, and Arrays</div>
+<div class="meta-field"><span class="meta-label">Objective/Aim:</span><br>To design and implement a Java program to store student details, calculate total marks, average, highest marks, lowest marks, percentage, grade, and evaluation remark using arrays, methods, and classes.</div>
+
+<h2 class="section-header">System Requirements :</h2>
+<div class="sub-heading">Hardware</div>
+<ul><li>Standard PC/Laptop</li><li>Intel Core i3/i5 processor or equivalent</li><li>Minimum 4 GB RAM</li><li>Minimum 500 MB free storage</li><li>Keyboard and Monitor</li></ul>
+<div class="sub-heading">Software</div>
+<ul><li>Operating System: Windows/Linux/macOS</li><li>Java Development Kit (JDK 17 or JDK 21)</li><li>Text Editor or IDE such as Eclipse, IntelliJ IDEA, NetBeans, or VS Code</li><li>Command Prompt/Terminal</li></ul>
+
+<h2 class="section-header">Algorithm / Logic Description:</h2>
+<ol>
+<li>Create a class named <code>Student</code> with attributes <code>rollNo</code>, <code>name</code>, and an integer array <code>marks[]</code>.</li>
+<li>Define a constructor to initialize the student details and subject marks.</li>
+<li>Define a method <code>calculateTotal()</code> to sum all elements in the <code>marks[]</code> array.</li>
+<li>Define <code>calculateAverage()</code> to compute the mean value of subject marks.</li>
+<li>Define <code>highestMarks()</code> and <code>lowestMarks()</code> using <code>Math.max()</code> and <code>Math.min()</code> iteratively.</li>
+<li>Define <code>calculatePercentage()</code> to compute percentage based on a 500 total mark scale rounded to two decimal places.</li>
+<li>Define <code>getGrade()</code> to assign letter grades (A+, A, B, C, D, F) based on percentage cutoffs.</li>
+<li>Define <code>getRemark()</code> to assign descriptive academic performance remarks corresponding to the grade.</li>
+<li>Define <code>displayReport()</code> to format and print the complete academic performance card.</li>
+<li>Create the <code>StudentPerformanceAnalysis</code> class containing the <code>main()</code> method to instantiate a <code>Student</code> object and invoke <code>displayReport()</code>.</li>
+<li>Stop the program.</li>
+</ol>
+
+<div class="page-break"></div>
+<h2 class="section-header">UML class Diagram</h2>
+<div class="uml-container">
+<div class="uml-box" style="width:85%;margin:0 auto;">
+<div class="uml-class-header">Student</div>
+<div class="uml-attributes">~ rollNo : int<br>~ name : String<br>~ marks : int[]</div>
+<div class="uml-methods">~ Student(rollNo: int, name: String, marks: int[])<br>~ calculateTotal() : int<br>~ calculateAverage() : double<br>~ highestMarks() : int<br>~ lowestMarks() : int<br>~ calculatePercentage() : double<br>~ getGrade() : String<br>~ getRemark() : String<br>~ displayReport() : void</div>
+</div>
+<div class="connector-area">▲<br>| (depends on / instantiates)<br>|</div>
+<div class="uml-box" style="width:85%;margin:0 auto;">
+<div class="uml-class-header">StudentPerformanceAnalysis</div>
+<div class="uml-methods">+ main(args : String[]) : void {static}</div>
+</div>
+</div>
+<p style="margin-top:14px;"><strong>Relationship:</strong> <code>StudentPerformanceAnalysis</code> instantiates and invokes methods of the <code>Student</code> class to process and display academic records.</p>
+
+<h2 class="section-header">Source Code:</h2>
+<div class="code-block">import java.util.*;
+
+// Student class to store student details and perform calculations
+class Student {
+
+    int rollNo;
+    String name;
+    int marks[];
+
+    Student(int rollNo, String name, int marks[]) {
+        this.rollNo = rollNo;
+        this.name = name;
+        this.marks = marks;
+    }
+
+    int calculateTotal() {
+        int total = 0;
+        for (int i = 0; i &lt; marks.length; i++) {
+            total += marks[i];
+        }
+        return total;
+    }
+
+    double calculateAverage() {
+        return (double) calculateTotal() / marks.length;
+    }
+
+    int highestMarks() {
+        int highest = marks[0];
+        for (int i = 1; i &lt; marks.length; i++) {
+            highest = Math.max(highest, marks[i]);
+        }
+        return highest;
+    }
+
+    int lowestMarks() {
+        int lowest = marks[0];
+        for (int i = 1; i &lt; marks.length; i++) {
+            lowest = Math.min(lowest, marks[i]);
+        }
+        return lowest;
+    }
+
+    double calculatePercentage() {
+        double percentage = (calculateTotal() / 500.0) * 100;
+        return Math.round(percentage * 100.0) / 100.0;
+    }
+
+    String getGrade() {
+        double p = calculatePercentage();
+
+        if (p &gt;= 90)
+            return "A+";
+        else if (p &gt;= 80)
+            return "A";
+        else if (p &gt;= 70)
+            return "B";
+        else if (p &gt;= 60)
+            return "C";
+        else if (p &gt;= 50)
+            return "D";
+        else
+            return "F";
+    }
+
+    String getRemark() {
+        String grade = getGrade();
+
+        if (grade.equals("A+"))
+            return "Outstanding";
+        else if (grade.equals("A"))
+            return "Excellent";
+        else if (grade.equals("B"))
+            return "Very Good";
+        else if (grade.equals("C"))
+            return "Good";
+        else if (grade.equals("D"))
+            return "Needs Improvement";
+        else
+            return "Failed";
+    }
+
+    void displayReport() {
+        System.out.println(" STUDENT PERFORMANCE REPORT");
+        System.out.println("Roll Number : " + rollNo);
+
+        String formattedName = name.trim().toUpperCase();
+
+        System.out.println("Student Name : " + formattedName);
+        System.out.println("Name Length : " + formattedName.length());
+
+        System.out.println("\nSubject Marks");
+
+        for (int i = 0; i &lt; marks.length; i++) {
+            System.out.println("Subject " + (i + 1) + " : " + marks[i]);
+        }
+
+        System.out.println("\nTotal Marks : " + calculateTotal());
+        System.out.println("Average : " + calculateAverage());
+        System.out.println("Highest Marks : " + highestMarks());
+        System.out.println("Lowest Marks : " + lowestMarks());
+        System.out.println("Percentage : " + calculatePercentage() + "%");
+        System.out.println("Grade : " + getGrade());
+
+        if (calculatePercentage() &gt;= 50)
+            System.out.println("Result : PASS");
+        else
+            System.out.println("Result : FAIL");
+
+        System.out.println("Remark : " + getRemark());
+    }
+}
+
+public class StudentPerformanceAnalysis {
+    public static void main(String args[]) {
+        int marks[] = {95, 88, 76, 91, 84};
+        Student s = new Student(200, "RAVI", marks);
+        s.displayReport();
+    }
+}</div>
+
+<h2 class="section-header">Compilation &amp; Execution Commands:</h2>
+<div class="meta-field"><span class="meta-label">Save file as:</span> StudentPerformanceAnalysis.java</div>
+<div class="meta-field"><span class="meta-label">Compilation:</span> javac StudentPerformanceAnalysis.java</div>
+<div class="meta-field"><span class="meta-label">Execution:</span> java StudentPerformanceAnalysis</div>
+
+<h2 class="section-header">Output Screenshot:</h2>
+<div class="terminal-box"><span class="ps-prompt">PS C:\Users\mmeen&gt;</span> <span class="cmd-call">&amp; 'C:\Program Files\Java\jdk-26.0.1\bin\java.exe' ... 'StudentPerformanceAnalysis'</span>
+ STUDENT PERFORMANCE REPORT
+Roll Number : 200
+Student Name : RAVI
+Name Length : 4
+
+Subject Marks
+Subject 1 : 95
+Subject 2 : 88
+Subject 3 : 76
+Subject 4 : 91
+Subject 5 : 84
+
+Total Marks : 434
+Average : 86.8
+Highest Marks : 95
+Lowest Marks : 76
+Percentage : 86.8%
+Grade : A
+Result : PASS
+Remark : Excellent
+<span class="ps-prompt">PS C:\Users\mmeen&gt;</span></div>
+
+<h2 class="section-header">Result:</h2>
+<p>The Student Performance Analysis program was successfully implemented in Java. The program demonstrates array processing, class composition, string operations, statistical evaluations (total, average, min, max), and grading logic to display a formatted academic report.</p>
+</body>
+</html>
