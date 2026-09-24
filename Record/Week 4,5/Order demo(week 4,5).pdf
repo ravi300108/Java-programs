@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Order Management System Demonstration</title>
+<style>
+  @page { size:A4 portrait; margin:18mm; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; font-size:13.5px; line-height:1.5; color:#111; background:#fff; margin:0; padding:0; }
+  h1.main-title { font-size:22px; font-weight:700; margin:0 0 16px; color:#000; }
+  h2.section-header { font-size:14.5px; font-weight:700; margin:18px 0 6px; color:#000; }
+  .meta-field { margin-bottom:8px; } .meta-label { font-weight:700; color:#000; }
+  .sub-heading { font-weight:700; margin:8px 0 4px; }
+  ul { list-style-type:disc; margin:4px 0 10px 22px; padding:0; }
+  ol { margin:4px 0 10px 22px; padding:0; } li { margin-bottom:3px; }
+  .uml-container { width:100%; margin:14px auto; font-family:"Courier New",Courier,monospace; font-size:12.5px; }
+  .uml-box { border:1.5px solid #222; background:#fff; box-sizing:border-box; }
+  .uml-class-header { font-weight:700; text-align:center; padding:5px; font-size:13px; border-bottom:1.5px solid #222; }
+  .uml-attributes,.uml-methods { padding:5px 10px; line-height:1.35; }
+  .uml-attributes { border-bottom:1.5px solid #222; }
+  .connector-area { text-align:center; line-height:1.2; margin:4px 0; }
+  .flex-row { display:flex; justify-content:space-between; gap:16px; }
+  .code-block { background:#fafafa; border:1px solid #e0e0e0; border-radius:4px; padding:12px 14px; font-family:Consolas,"Courier New",Courier,monospace; font-size:11.5px; line-height:1.4; color:#000; white-space:pre; overflow-x:auto; margin:8px 0 14px; }
+  .terminal-box { background:#1e1e1e; color:#ccc; border-radius:5px; padding:12px 16px; font-family:Consolas,"Courier New",Courier,monospace; font-size:12px; line-height:1.45; white-space:pre; margin:8px 0 16px; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+  .terminal-box .ps-prompt { color:#e5e5e5; } .terminal-box .cmd-call { color:#4ec9b0; }
+  .page-break { page-break-before:always; }
+</style>
+</head>
+<body>
+
+<h1 class="main-title">Order Management Demonstration</h1>
+
+<div class="meta-field"><span class="meta-label">Title:</span> Order Management System</div>
+
+<div class="meta-field"><span class="meta-label">Objective/Aim:</span><br>
+To write a Java program demonstrating classes, constructors, inheritance, method implementation, and the creation and management of special and normal orders.</div>
+
+<h2 class="section-header">System Requirements :</h2>
+<div class="sub-heading">Hardware</div>
+<ul>
+<li>Standard PC/Laptop</li><li>Intel Core i3/i5 processor or equivalent</li><li>Minimum 4 GB RAM</li><li>Minimum 500 MB free storage</li><li>Keyboard and Monitor</li>
+</ul>
+<div class="sub-heading">Software</div>
+<ul>
+<li>Operating System: Windows/Linux/macOS</li><li>Java Development Kit (JDK 17 or JDK 21)</li>
+<li>Text Editor or IDE such as Eclipse, IntelliJ IDEA, NetBeans, or VS Code</li><li>Command Prompt/Terminal</li>
+</ul>
+
+<h2 class="section-header">Algorithm / Logic Description:</h2>
+<ol>
+<li>Create a <code>Customer</code> class with <code>customerName</code> and <code>customerPlace</code> as instance variables.</li>
+<li>Define <code>sendOrder()</code> and <code>receiveOrder()</code> methods inside the <code>Customer</code> class.</li>
+<li>Create an <code>Order</code> base class with attributes <code>orderDate</code> and <code>orderId</code>.</li>
+<li>Define <code>confirmOrder()</code> and <code>closeOrder()</code> methods inside the <code>Order</code> class.</li>
+<li>Create a subclass <code>SpecialOrder</code> extending <code>Order</code>, initialize via <code>super()</code>, and define <code>dispatchOrder()</code>.</li>
+<li>Create a subclass <code>NormalOrder</code> extending <code>Order</code>, initialize via <code>super()</code>, and define <code>dispatchOrder()</code> and <code>receiveNormalOrder()</code>.</li>
+<li>Create the <code>OrderDemo</code> class containing the <code>main()</code> method.</li>
+<li>Instantiate <code>Customer</code>, <code>SpecialOrder</code>, and <code>NormalOrder</code> objects.</li>
+<li>Display customer details and invoke order processing methods for both special and normal orders.</li>
+<li>Stop the program.</li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2 class="section-header">UML class Diagram</h2>
+<div class="uml-container">
+<div class="uml-box" style="width:75%;margin:0 auto;">
+<div class="uml-class-header">Customer</div>
+<div class="uml-attributes">~ customerName : String<br>~ customerPlace : String</div>
+<div class="uml-methods">~ Customer(customerName: String, customerPlace: String)<br>~ sendOrder() : void<br>~ receiveOrder() : void</div>
+</div>
+
+<div class="connector-area">▲<br>: (uses)<br>:</div>
+
+<div class="uml-box" style="width:75%;margin:0 auto;">
+<div class="uml-class-header">OrderDemo</div>
+<div class="uml-methods">+ main(args : String[]) : void {static}</div>
+</div>
+
+<div class="connector-area">
+/　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　\<br>
+(uses) /　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　\ (uses)<br>
+▼　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　▼
+</div>
+
+<div class="flex-row">
+<div class="uml-box" style="flex:1;">
+<div class="uml-class-header">SpecialOrder</div>
+<div class="uml-methods">~ SpecialOrder(date: String, id: String)<br>~ dispatchOrder() : void</div>
+</div>
+<div class="uml-box" style="flex:1;">
+<div class="uml-class-header">NormalOrder</div>
+<div class="uml-methods">~ NormalOrder(date: String, id: String)<br>~ dispatchOrder() : void<br>~ receiveNormalOrder() : void</div>
+</div>
+</div>
+
+<div class="connector-area">
+\　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　/<br>
+▲　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　▲<br>
+(Inheritance / Extends)
+</div>
+
+<div class="uml-box" style="width:75%;margin:0 auto;">
+<div class="uml-class-header">Order</div>
+<div class="uml-attributes">~ orderDate : String<br>~ orderId : String</div>
+<div class="uml-methods">~ Order(orderDate: String, orderId: String)<br>~ confirmOrder() : void<br>~ closeOrder() : void</div>
+</div>
+</div>
+
+<p style="margin-top:14px;"><strong>Relationship:</strong> <code>OrderDemo</code> uses <code>Customer</code>, <code>SpecialOrder</code>, and <code>NormalOrder</code>. Both <code>SpecialOrder</code> and <code>NormalOrder</code> extend the base class <code>Order</code> (Inheritance).</p>
+
+<h2 class="section-header">Source Code:</h2>
+<div class="code-block">class Customer {
+    String customerName;
+    String customerPlace;
+
+    Customer(String customerName, String customerPlace) {
+        this.customerName = customerName;
+        this.customerPlace = customerPlace;
+    }
+
+    void sendOrder() {
+        System.out.println(customerName + " has sent the order.");
+    }
+
+    void receiveOrder() {
+        System.out.println(customerName + " has received the order.");
+    }
+}
+
+class Order {
+    String orderDate;
+    String orderId;
+
+    Order(String orderDate, String orderId) {
+        this.orderDate = orderDate;
+        this.orderId = orderId;
+    }
+
+    void confirmOrder() {
+        System.out.println("Order " + orderId + " confirmed.");
+    }
+
+    void closeOrder() {
+        System.out.println("Order " + orderId + " closed.");
+    }
+}
+
+class SpecialOrder extends Order {
+    SpecialOrder(String date, String id) {
+        super(date, id);
+    }
+
+    void dispatchOrder() {
+        System.out.println("Special Order " + orderId + " dispatched.");
+    }
+}
+
+class NormalOrder extends Order {
+    NormalOrder(String date, String id) {
+        super(date, id);
+    }
+
+    void dispatchOrder() {
+        System.out.println("Normal Order " + orderId + " dispatched.");
+    }
+
+    void receiveNormalOrder() {
+        System.out.println("Normal Order " + orderId + " received.");
+    }
+}
+
+public class OrderDemo {
+    public static void main(String[] args) {
+        Customer c1 = new Customer("Ravi", "USA");
+        SpecialOrder s1 = new SpecialOrder("11-08-2026", "S101");
+        NormalOrder n1 = new NormalOrder("11-08-2026", "N101");
+
+        System.out.println("Customer Information");
+        System.out.println("Customer Name: " + c1.customerName);
+        System.out.println("Place: " + c1.customerPlace);
+
+        System.out.println("\nSpecial Order Details");
+        s1.confirmOrder();
+        s1.dispatchOrder();
+        s1.closeOrder();
+
+        System.out.println("\nNormal Order Details");
+        n1.confirmOrder();
+        n1.dispatchOrder();
+        n1.receiveNormalOrder();
+        n1.closeOrder();
+
+        System.out.println("\nCustomer Activities");
+        c1.sendOrder();
+        c1.receiveOrder();
+    }
+}</div>
+
+<h2 class="section-header">Compilation &amp; Execution Commands:</h2>
+<div class="meta-field"><span class="meta-label">Save file as:</span> OrderDemo.java</div>
+<div class="meta-field"><span class="meta-label">Compilation:</span> javac OrderDemo.java</div>
+<div class="meta-field"><span class="meta-label">Execution:</span> java OrderDemo</div>
+
+<h2 class="section-header">Output Screenshot:</h2>
+<div class="terminal-box"><span class="ps-prompt">PS C:\Users\mmeen\RAVI&gt;</span> <span class="cmd-call">c:; cd 'c:\Users\mmeen\RAVI'; &amp; 'C:\Program Files\Java\jdk-26.0.1\bin\java.exe' ... 'OrderDemo'</span>
+Customer Information
+Customer Name: Ravi
+Place: USA
+
+Special Order Details
+Order S101 confirmed.
+Special Order S101 dispatched.
+Order S101 closed.
+
+Normal Order Details
+Order N101 confirmed.
+Normal Order N101 dispatched.
+Normal Order N101 received.
+Order N101 closed.
+
+Customer Activities
+Ravi has sent the order.
+Ravi has received the order.
+<span class="ps-prompt">PS C:\Users\mmeen\RAVI&gt;</span></div>
+
+<h2 class="section-header">Result:</h2>
+<p>The Order Management System program was successfully implemented in Java. The program demonstrates object-oriented concepts including inheritance (base class <code>Order</code> extended by <code>SpecialOrder</code> and <code>NormalOrder</code>), constructor chaining using <code>super()</code>, method implementation, and class associations.</p>
+
+</body>
+</html>
