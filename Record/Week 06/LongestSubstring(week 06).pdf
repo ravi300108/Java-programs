@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Longest Unique Substring Demonstration</title>
+<style>
+  @page { size: A4 portrait; margin: 20mm; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; font-size:13.5px; line-height:1.5; color:#111; background:#fff; margin:0; padding:0; }
+  h1.main-title { font-size:22px; font-weight:700; margin:0 0 16px; color:#000; }
+  h2.section-header { font-size:14.5px; font-weight:700; margin:18px 0 6px; color:#000; }
+  .meta-field { margin-bottom:8px; } .meta-label { font-weight:700; color:#000; }
+  .sub-heading { font-weight:700; margin:8px 0 4px; }
+  ul { list-style-type:disc; margin:4px 0 10px 22px; padding:0; }
+  ol { margin:4px 0 10px 22px; padding:0; } li { margin-bottom:3px; }
+  .uml-box { margin:14px auto; width:85%; border:1.5px solid #222; background:#fff; }
+  .uml-class-header { font-weight:700; text-align:center; padding:6px; font-size:14px; border-bottom:1.5px solid #222; }
+  .uml-methods { padding:8px 14px; font-family:"Courier New",Courier,monospace; font-size:13px; line-height:1.45; }
+  .connector-area { text-align:center; font-family:"Courier New",Courier,monospace; font-size:13px; line-height:1.2; margin:4px 0; }
+  .code-block { background:#fafafa; border:1px solid #e0e0e0; border-radius:4px; padding:12px 14px; font-family:Consolas,"Courier New",Courier,monospace; font-size:12px; line-height:1.42; color:#000; white-space:pre; overflow-x:auto; margin:8px 0 14px; }
+  .terminal-box { background:#1e1e1e; color:#ccc; border-radius:5px; padding:12px 16px; font-family:Consolas,"Courier New",Courier,monospace; font-size:12px; line-height:1.45; white-space:pre; margin:8px 0 16px; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+  .terminal-box .ps-prompt { color:#e5e5e5; } .terminal-box .cmd-call { color:#4ec9b0; }
+  .page-break { page-break-before:always; }
+</style>
+</head>
+<body>
+
+<h1 class="main-title">Unique String Demonstration</h1>
+
+<div class="meta-field"><span class="meta-label">Title:</span> Longest Substring Without Repeating Characters</div>
+
+<div class="meta-field"><span class="meta-label">Objective/Aim:</span><br>
+To find the longest substring without repeating characters using Java string methods, loops, and Scanner input.</div>
+
+<h2 class="section-header">System Requirements :</h2>
+<div class="sub-heading">Hardware</div>
+<ul>
+<li>Standard PC/Laptop</li><li>Intel Core i3/i5 processor or equivalent</li><li>Minimum 4 GB RAM</li><li>Minimum 500 MB free storage</li><li>Keyboard and Monitor</li>
+</ul>
+<div class="sub-heading">Software</div>
+<ul>
+<li>Operating System: Windows/Linux/macOS</li><li>Java Development Kit (JDK 17 or JDK 21)</li>
+<li>Text Editor or IDE such as Eclipse, IntelliJ IDEA, NetBeans, or VS Code</li><li>Command Prompt/Terminal</li>
+</ul>
+
+<h2 class="section-header">Algorithm / Logic Description:</h2>
+<ol>
+<li>Import the <code>Scanner</code> class from <code>java.util</code> package.</li>
+<li>Read an input string from the user using <code>nextLine()</code>.</li>
+<li>Iterate through each character using an outer loop representing the starting index.</li>
+<li>Use an inner loop to construct a temporary substring starting from that character.</li>
+<li>Check for repeating characters by testing <code>indexOf(letter) != -1</code> before appending.</li>
+<li>If a duplicate character is encountered, terminate the inner loop.</li>
+<li>Compare the current substring length with the longest found so far and update if it is greater than or equal to the longest length.</li>
+<li>Display the length of the longest substring and the substring itself.</li>
+<li>Close the <code>Scanner</code> object.</li>
+<li>Stop the program.</li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2 class="section-header">UML class Diagram</h2>
+<div class="uml-box">
+<div class="uml-class-header">UniqueString</div>
+<div class="uml-methods">~ getLongest(text : String) : String {static}<br>+ main(args : String[]) : void {static}</div>
+</div>
+
+<div class="connector-area">:<br>: (uses)<br>▼</div>
+
+<div class="uml-box" style="margin-top:0;">
+<div class="uml-class-header">java.util.Scanner</div>
+<div class="uml-methods">+ nextLine() : String<br>+ close() : void</div>
+</div>
+
+<p style="margin-top:14px;"><strong>Relationship:</strong> The <code>UniqueString</code> class uses the standard <code>Scanner</code> class to capture string inputs from the command line.</p>
+
+<h2 class="section-header">Source Code:</h2>
+<div class="code-block">import java.util.Scanner;
+
+public class UniqueString {
+    static String getLongest(String text) {
+        String answer = "";
+        for (int start = 0; start &lt; text.length(); start++) {
+            String temp = "";
+            for (int end = start; end &lt; text.length(); end++) {
+                char letter = text.charAt(end);
+
+                // Check for duplicate character
+                if (temp.indexOf(letter) &gt;= 0) {
+                    break;
+                }
+                temp += letter;
+
+                // Compare current substring with previous result
+                if (temp.length() &gt;= answer.length()) {
+                    answer = temp;
+                }
+            }
+        }
+        return answer;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String text = input.nextLine();
+
+        String result = getLongest(text);
+        System.out.println("Longest length: " + result.length());
+        System.out.println("Longest substring: " + result);
+
+        input.close();
+    }
+}</div>
+
+<h2 class="section-header">Compilation &amp; Execution Commands:</h2>
+<div class="meta-field"><span class="meta-label">Save file as:</span> UniqueString.java</div>
+<div class="meta-field"><span class="meta-label">Compilation:</span> javac UniqueString.java</div>
+<div class="meta-field"><span class="meta-label">Execution:</span> java UniqueString</div>
+
+<h2 class="section-header">Output Screenshot:</h2>
+<div class="terminal-box"><span class="ps-prompt">PS C:\Users\mmeen\RAVI&gt;</span> <span class="cmd-call">c:; cd 'c:\Users\mmeen\RAVI'; &amp; 'c:\Program Files\Java\jdk-26.0.1\bin\java.exe' ... 'UniqueString'</span>
+Enter a string: AbcdAbc
+Longest length: 4
+Longest substring: dAbc
+<span class="ps-prompt">PS C:\Users\mmeen\RAVI&gt;</span></div>
+
+<h2 class="section-header">Result:</h2>
+<p>The program was implemented successfully to find the longest substring containing unique characters. It demonstrates nested iteration, string searching using <code>indexOf()</code>, substring tracking, and user input handling using the <code>Scanner</code> class.</p>
+
+</body>
+</html>
