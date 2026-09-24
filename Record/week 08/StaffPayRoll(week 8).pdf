@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Staff Payroll Demonstration</title>
+<style>
+  @page { size: A4 portrait; margin: 18mm; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 13.5px; line-height: 1.5; color: #111; background: #fff; margin: 0;
+  }
+  h1.main-title { font-size: 22px; font-weight: 700; margin: 0 0 16px; color: #000; }
+  h2.section-header { font-size: 14.5px; font-weight: 700; margin: 18px 0 6px; color: #000; }
+  .meta-field { margin-bottom: 8px; }
+  .meta-label { font-weight: 700; color: #000; }
+  .sub-heading { font-weight: 700; margin: 8px 0 4px; }
+  ul { list-style-type: disc; margin: 4px 0 10px 22px; padding: 0; }
+  ol { margin: 4px 0 10px 22px; padding: 0; }
+  li { margin-bottom: 3px; }
+  .uml-container { width: 100%; margin: 14px auto; font-family: "Courier New", monospace; font-size: 12.5px; }
+  .uml-box { border: 1.5px solid #222; background: #fff; box-sizing: border-box; }
+  .uml-class-header { font-weight: 700; text-align: center; padding: 5px; font-size: 13px; border-bottom: 1.5px solid #222; }
+  .uml-attributes, .uml-methods { padding: 5px 10px; line-height: 1.35; }
+  .uml-attributes { border-bottom: 1.5px solid #222; }
+  .connector-area { text-align: center; line-height: 1.2; margin: 4px 0; }
+  .flex-row { display: flex; justify-content: space-between; gap: 16px; }
+  .code-block {
+    background: #fafafa; border: 1px solid #e0e0e0; border-radius: 4px;
+    padding: 12px 14px; font-family: Consolas, "Courier New", monospace;
+    font-size: 11.5px; line-height: 1.4; color: #000; white-space: pre;
+    overflow-x: auto; margin: 8px 0 14px;
+  }
+  .terminal-box {
+    background: #1e1e1e; color: #ccc; border-radius: 5px; padding: 12px 16px;
+    font-family: Consolas, "Courier New", monospace; font-size: 12px; line-height: 1.45;
+    white-space: pre; margin: 8px 0 16px; box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  }
+  .terminal-box .ps-prompt { color: #e5e5e5; }
+  .terminal-box .cmd-call { color: #4ec9b0; }
+  .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<h1 class="main-title">Staff Payroll Demonstration</h1>
+
+<div class="meta-field"><span class="meta-label">Title:</span> Staff Payroll System using Inheritance and Runtime Polymorphism</div>
+
+<div class="meta-field">
+  <span class="meta-label">Objective/Aim:</span><br>
+  To design and implement a Java program to calculate and display the salary structure of permanent and temporary staff using inheritance, constructors, method overriding, and dynamic method dispatch.
+</div>
+
+<h2 class="section-header">System Requirements :</h2>
+<div class="sub-heading">Hardware</div>
+<ul>
+  <li>Standard PC/Laptop</li><li>Intel Core i3/i5 processor or equivalent</li>
+  <li>Minimum 4 GB RAM</li><li>Minimum 500 MB free storage</li><li>Keyboard and Monitor</li>
+</ul>
+
+<div class="sub-heading">Software</div>
+<ul>
+  <li>Operating System: Windows/Linux/macOS</li>
+  <li>Java Development Kit (JDK 17 or JDK 21)</li>
+  <li>Text Editor or IDE such as Eclipse, IntelliJ IDEA, NetBeans, or VS Code</li>
+  <li>Command Prompt/Terminal</li>
+</ul>
+
+<h2 class="section-header">Algorithm / Logic Description:</h2>
+<ol>
+  <li>Create a superclass named <code>Staff</code> with attribute <code>staffId</code>.</li>
+  <li>Define a constructor to initialize <code>staffId</code> and a base method <code>calculateSalary()</code>.</li>
+  <li>Create a derived class <code>PermanentStaff</code> extending <code>Staff</code>.</li>
+  <li>Override <code>calculateSalary()</code> in <code>PermanentStaff</code> to calculate gross salary with basic (28000), allowance (12000), and travel allowance (4000).</li>
+  <li>Create a derived class <code>TemporaryStaff</code> extending <code>Staff</code>.</li>
+  <li>Override <code>calculateSalary()</code> in <code>TemporaryStaff</code> to calculate gross salary with basic (15000), allowance (2000), and travel allowance (2500).</li>
+  <li>Create the <code>StaffPayroll</code> class containing the <code>main()</code> method.</li>
+  <li>Initialize a staff identifier (e.g., <code>"P101"</code>).</li>
+  <li>Use conditional statements (<code>startsWith("P")</code> or <code>startsWith("T")</code>) to instantiate the appropriate subclass through a superclass reference variable (<code>Staff worker</code>).</li>
+  <li>Invoke <code>calculateSalary()</code> through the reference to demonstrate runtime polymorphism.</li>
+  <li>Stop the program.</li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2 class="section-header">UML class Diagram</h2>
+<div class="uml-container">
+  <div class="uml-box" style="width:55%;margin:0 auto;">
+    <div class="uml-class-header">Staff</div>
+    <div class="uml-attributes">~ staffId : String</div>
+    <div class="uml-methods">~ Staff(staffId : String)<br>~ calculateSalary() : void</div>
+  </div>
+
+  <div class="connector-area">
+    ▲　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　▲<br>
+    /　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　\<br>
+    / (Inheritance)　　　　　　　　　　　　　　　　　　　　　　　　　　　　\ (Inheritance)<br>
+    /　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　\
+  </div>
+
+  <div class="flex-row">
+    <div class="uml-box" style="flex:1;">
+      <div class="uml-class-header">PermanentStaff</div>
+      <div class="uml-methods">~ PermanentStaff(staffId : String)<br>~ calculateSalary() : void</div>
+    </div>
+    <div class="uml-box" style="flex:1;">
+      <div class="uml-class-header">TemporaryStaff</div>
+      <div class="uml-methods">~ TemporaryStaff(staffId : String)<br>~ calculateSalary() : void</div>
+    </div>
+  </div>
+
+  <div class="connector-area">
+    ▲　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　▲<br>
+    :　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　:<br>
+    :.........................   .....................:<br>
+                             :   :<br>
+                             :   : (creates &amp; uses)<br>
+                             :   :
+  </div>
+
+  <div class="uml-box" style="width:55%;margin:0 auto;">
+    <div class="uml-class-header">StaffPayroll</div>
+    <div class="uml-methods">+ main(args : String[]) : void {static}</div>
+  </div>
+</div>
+
+<p style="margin-top:14px;"><strong>Relationship:</strong> <code>PermanentStaff</code> and <code>TemporaryStaff</code> extend the base class <code>Staff</code>. The driver class <code>StaffPayroll</code> instantiates and invokes them dynamically via superclass references.</p>
+
+<h2 class="section-header">Source Code:</h2>
+<div class="code-block">// Parent class
+class Staff {
+    String staffId;
+
+    Staff(String staffId) {
+        this.staffId = staffId;
+    }
+
+    void calculateSalary() {
+        System.out.println("Employee Salary Information:");
+    }
+}
+
+class PermanentStaff extends Staff {
+    PermanentStaff(String staffId) {
+        super(staffId);
+    }
+
+    @Override
+    void calculateSalary() {
+        int basic = 28000;
+        int allowance = 12000;
+        int travel = 4000;
+
+        int grossSalary = basic + allowance + travel;
+
+        System.out.println("Salary Information:");
+        System.out.println("Basic Salary : " + basic);
+        System.out.println("Allowance    : " + allowance);
+        System.out.println("Travel Allow.: " + travel);
+        System.out.println("Gross Salary : " + grossSalary);
+    }
+}
+
+class TemporaryStaff extends Staff {
+    TemporaryStaff(String staffId) {
+        super(staffId);
+    }
+
+    @Override
+    void calculateSalary() {
+        int basic = 15000;
+        int allowance = 2000;
+        int travel = 2500;
+
+        int grossSalary = basic + allowance + travel;
+
+        System.out.println("Salary Information:");
+        System.out.println("Basic Salary : " + basic);
+        System.out.println("Allowance    : " + allowance);
+        System.out.println("Travel Allow.: " + travel);
+        System.out.println("Gross Salary : " + grossSalary);
+    }
+}
+
+public class StaffPayroll {
+    public static void main(String args[]) {
+        String staffId = "P101";
+
+        if (staffId.startsWith("P")) {
+            Staff worker = new PermanentStaff(staffId);
+            worker.calculateSalary();
+        } else if (staffId.startsWith("T")) {
+            Staff worker = new TemporaryStaff(staffId);
+            worker.calculateSalary();
+        } else {
+            System.out.println("Invalid Staff ID");
+        }
+    }
+}</div>
+
+<h2 class="section-header">Compilation &amp; Execution Commands:</h2>
+<div class="meta-field"><span class="meta-label">Save file as:</span> StaffPayroll.java</div>
+<div class="meta-field"><span class="meta-label">Compilation:</span> javac StaffPayroll.java</div>
+<div class="meta-field"><span class="meta-label">Execution:</span> java StaffPayroll</div>
+
+<h2 class="section-header">Output Screenshot:</h2>
+<div class="terminal-box"><span class="ps-prompt">PS C:\Users\mmeen\RAVI&gt;</span> <span class="cmd-call">c:; cd 'c:\Users\mmeen\RAVI'; &amp; 'C:\Program Files\Java\jdk-26.0.1\bin\java.exe' ... 'StaffPayroll'</span>
+Salary Information:
+Basic Salary : 28000
+Allowance    : 12000
+Travel Allow.: 4000
+Gross Salary : 44000
+<span class="ps-prompt">PS C:\Users\mmeen\RAVI&gt;</span></div>
+
+<h2 class="section-header">Result:</h2>
+<p>The Staff Payroll program was successfully implemented in Java using object-oriented principles. The program demonstrates inheritance with <code>super()</code> constructor invocation, method overriding for distinct salary structures, and dynamic method dispatch to evaluate salaries based on employee categories.</p>
+
+</body>
+</html>
